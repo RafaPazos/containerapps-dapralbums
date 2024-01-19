@@ -112,7 +112,7 @@ jobs:
         with:
           inlineScript: |
             az group create -g ${{ secrets.RG_DEV }} -l northeurope
-            az deployment group create -g ${{ secrets.RG_DEV }} -f ./infra/main.bicep -l northeurope --parameters \
+            az deployment group create -g ${{ secrets.RG_DEV }} -f ./infra/main.bicep --parameters \
             apiImage='${{ needs.package-services.outputs.api-image }}' \
             viewerImage='${{ needs.package-services.outputs.ui-image }}' \
             registryServer=${{ env.REGISTRY }} \
