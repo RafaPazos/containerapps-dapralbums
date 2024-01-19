@@ -74,7 +74,7 @@ module containerApps './app/env.bicep' = {
 // Web frontend
 module web './app/web.bicep' = {
   name: 'web'
-  scope: resourceGroup
+  scope: rg
   params: {
     name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web-${resourceToken}'
     location: location
@@ -91,7 +91,7 @@ module web './app/web.bicep' = {
 // Api backend
 module api './app/api.bicep' = {
   name: 'api'
-  scope: resourceGroup
+  scope: rg
   params: {
     name: !empty(apiContainerAppName) ? apiContainerAppName : '${abbrs.appContainerApps}api-${resourceToken}'
     location: location
@@ -109,7 +109,7 @@ module api './app/api.bicep' = {
 // The application database
 module cosmos './app/db.bicep' = {
   name: 'cosmos'
-  scope: resourceGroup
+  scope: rg
   params: {
     accountName: !empty(cosmosAccountName) ? cosmosAccountName : '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
     databaseName: cosmosDatabaseName
@@ -122,7 +122,7 @@ module cosmos './app/db.bicep' = {
 // Store CosmosDb secrets in a keyvault
 module keyVault './core/security/keyvault.bicep' = {
   name: 'keyvault'
-  scope: resourceGroup
+  scope: rg
   params: {
     name: !empty(keyVaultName) ? keyVaultName : '${abbrs.keyVaultVaults}${resourceToken}'
     location: location
@@ -134,7 +134,7 @@ module keyVault './core/security/keyvault.bicep' = {
 // Monitor application with Azure Monitor
 module monitoring './core/monitor/monitoring.bicep' = {
   name: 'monitoring'
-  scope: resourceGroup
+  scope: rg
   params: {
     location: location
     tags: tags
@@ -147,7 +147,7 @@ module monitoring './core/monitor/monitoring.bicep' = {
 // Creates Azure API Management (APIM) service to mediate the requests between the frontend and the backend API
 module apim './core/gateway/apim.bicep' = if (useAPIM) {
   name: 'apim-deployment'
-  scope: resourceGroup
+  scope: rg
   params: {
     name: !empty(apimServiceName) ? apimServiceName : '${abbrs.apiManagementService}${resourceToken}'
     location: location
@@ -159,7 +159,7 @@ module apim './core/gateway/apim.bicep' = if (useAPIM) {
 // Configures the API in the Azure API Management (APIM) service
 module apimApi './app/apim-api.bicep' = if (useAPIM) {
   name: 'apim-api-deployment'
-  scope: resourceGroup
+  scope: rg
   params: {
     name: useAPIM ? apim.outputs.apimServiceName : ''
     apiName: 'todo-api'
