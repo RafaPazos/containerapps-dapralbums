@@ -3,6 +3,7 @@ param cosmos_database_name string
 param cosmos_collection_name string
 param containerAppsEnvName string
 param containerRegistryName string
+@secure()
 param secretStoreName string
 param vaultName string
 param location string

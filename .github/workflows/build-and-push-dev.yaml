@@ -113,8 +113,6 @@ jobs:
           inlineScript: |
             az group create -g ${{ secrets.RG_DEV }} -l northeurope
             az deployment sub create -f ./infra/main.bicep -l northeurope --parameters \
-            apiImage='${{ needs.package-services.outputs.api-image }}' \
-            viewerImage='${{ needs.package-services.outputs.ui-image }}' \
             registryServer=${{ env.REGISTRY }} \
             registryUsername=${{ github.actor }} \
             registryPassword=${{ secrets.GH_PAT }}
