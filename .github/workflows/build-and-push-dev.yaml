@@ -112,7 +112,4 @@ jobs:
         with:
           inlineScript: |
             az group create -g ${{ secrets.RG_DEV }} -l northeurope
-            az deployment sub create -f ./infra/main.bicep -l northeurope --parameters \
-            registryServer=${{ env.REGISTRY }} \
-            registryUsername=${{ github.actor }} \
-            registryPassword=${{ secrets.GH_PAT }}
+            az deployment sub create -f ./infra/main.bicep -l northeurope 
