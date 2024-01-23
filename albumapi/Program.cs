@@ -56,6 +56,15 @@ app.MapGet("/albums", async (HttpContext context, DaprClient client, AlbumApiCon
     return Results.Ok(albums);
 }).WithName("GetAlbums");
 
+app.MapGet("/update", async (HttpContext context, DaprClient client, AlbumApiConfiguration config) =>
+{
+        var albums = Album.DefaultAlbums();
+
+        await client.SaveStateAsync($"{config.AlbumStateStore}", $"{config.CollectionId}", albums);
+
+    return Results.Ok(albums);
+}).WithName("UpdateAlbums");
+
 app.Run();
 
 // the album model
