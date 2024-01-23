@@ -81,24 +81,6 @@ public record Album([property: JsonPropertyName("id")] int Id,
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // app configuration settings
 public class AlbumApiConfiguration
 {
