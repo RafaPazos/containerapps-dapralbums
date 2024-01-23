@@ -73,7 +73,8 @@ public record Album([property: JsonPropertyName("id")] int Id,
             new Album(3, "1989", "Taylor Swift", 13.99, "https://aka.ms/albums-taylor"),
             new Album(4, "Legend", "Bob Marley and the Wailers", 12.99,"https://aka.ms/albums-bobmarley"),
             new Album(5, "OK Computer", "Radiohead", 12.99, "https://aka.ms/albums-radiohead"),
-            new Album(6, "Appetite for Destruction", "Guns'N'Roses", 14.99, "https://aka.ms/albums-gunsnroses")
+            new Album(6, "Appetite for Destruction", "Guns'N'Roses", 14.99, "https://aka.ms/albums-gunsnroses"),
+            new Album(7, "Greatest Hits", "Guns'N'Roses", 14.99, "https://aka.ms/albums-gunsnroses")
          };
 
         return albums;

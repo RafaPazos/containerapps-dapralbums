@@ -1,4 +1,4 @@
-name: Build and Deploy (DEV)
+name: Build and Deploy Containers (DEV)
 on:
   push:
     branches: [main]
@@ -64,7 +64,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.AZURE_CLIENT_ID }}
           password: ${{ secrets.AZURE_CLIENT_SECRET }}
-          
+
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
