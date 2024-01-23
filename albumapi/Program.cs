@@ -59,10 +59,8 @@ app.MapGet("/albums", async (HttpContext context, DaprClient client, AlbumApiCon
 app.MapGet("/update", async (HttpContext context, DaprClient client, AlbumApiConfiguration config) =>
 {
         var albums = Album.DefaultAlbums();
-
         await client.SaveStateAsync($"{config.AlbumStateStore}", $"{config.CollectionId}", albums);
-
-    return Results.Ok(albums);
+    return Results.Ok();
 }).WithName("UpdateAlbums");
 
 app.Run();
@@ -110,9 +108,7 @@ public static class StateStoreExtensions
     public static async Task<List<Album>> InitializeAlbumState(DaprClient client, AlbumApiConfiguration config)
     {
         var albums = Album.DefaultAlbums();
-
         await client.SaveStateAsync($"{config.AlbumStateStore}", $"{config.CollectionId}", albums);
-
         return albums;
     }
 }
